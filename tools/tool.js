@@ -61,3 +61,21 @@ function elementByClassName(parent,classStr){
 function getStyle(elem,attr){
 	return elem.currentStyle ? elem.currentStyle(attr) : getComputedStyle(elem)[attr];
 }
+
+//删除空白节点
+function removeSpaceNode(parent){
+	var nodes = parent.childNodes;//获取父级所有节点
+	for(i = nodes.length - 1; i >= 0; i--){
+		if(nodes[i].nodeType == 3 && /^\s+$/.test(nodes[i].nodeValue)){
+			parent.removeChild(nodes[i]);
+		}
+	}
+}
+
+//在父级创建一个带文本的元素节点
+function createElementWidthText(parent,tagName,text){
+	var node = document.createElement(tagName);
+	var textStr = document.createTextNode(text);
+	node.appendChild(textStr);
+	parent.appendChild(node);
+}
