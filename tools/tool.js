@@ -79,3 +79,31 @@ function createElementWidthText(parent,tagName,text){
 	node.appendChild(textStr);
 	parent.appendChild(node);
 }
+
+//在旧节点之后添加新节点
+function insertAfter(newNode,oldNode){
+	//判断oldNode是否是最后一个
+	var parent = oldNode.parentNode;
+	if(oldNode == parent.lastChild){
+		parent.appendChild(newNode);
+	}else{
+		parent.insertBefore(newNode,oldNode.nextSibling);
+	}
+}
+
+//添加二级事件
+function addEvent(obj,type,fun){//obj：父级，type：事件类型，fun：方法名称
+	if(obj.addEventListener){
+		obj.addEventListener(type,fun,false);
+	}else{
+		obj.attachEvent("on" + type,fun);
+	}
+}
+//删除二级事件
+function removeEvent(obj,type,fun){
+	if(obj.removeEventListener){
+		obj.removeEventListener(type,fun,false);
+	}else{
+		obj.detachEvent("on" + type,fun);
+	}
+}
