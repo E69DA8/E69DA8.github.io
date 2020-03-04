@@ -107,3 +107,23 @@ function removeEvent(obj,type,fun){
 		obj.detachEvent("on" + type,fun);
 	}
 }
+
+//封装cookie
+function setCookie(name,value,day){//增、改
+	var oDate = new Date();
+	oDate.setDate(oDate.getDate() + day);
+	document.cookie = name + "=" + value + ";expires=" + oDate;
+}
+function getCookie(name){//查
+	var cookieStr = document.cookie;
+	var cookieArr = cookieStr.split("; ");
+	for(var i = 0; i < cookieArr.length; i++){
+		var aPairCookieArr = cookieArr[i].split("=");
+		if(aPairCookieArr[0] == name){
+			return aPairCookieArr[1];
+		}
+	}
+}
+function removeCookie(name){//删
+	setCookie(name,1,-1);
+}
