@@ -127,3 +127,26 @@ function getCookie(name){//查
 function removeCookie(name){//删
 	setCookie(name,1,-1);
 }
+
+//animation简单封装
+function animation(elem,properties){
+	clearInterval(elem.timerId);
+	elem.timerId = setInterval(function(){
+		for(property in properties){
+			var current;
+			var target = properties[property];
+			if(property == "opacity"){
+				current = Math.round((parseFloat(getStyle(elem,"opacity")))*100);
+			}else{
+				current = parseInt(getStyle(elem,property));
+			}
+			var speed = (target - current) / 30;
+			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+			if(property == "opacity"){
+				elem.style.opacity = (current + speed) / 100;
+			}else{
+				elem.style[property] = current + speed + "px";
+			}
+		}
+	},20)
+}
