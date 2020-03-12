@@ -26,24 +26,24 @@ function choose(arr){
 
 //获取节点对象
 //格式：id：#id，className：.className,tagName:tagName,name:name=name
-function $(vArg){
-	switch (vArg[0]){
-		case "#"://id
-			return document.getElementById(vArg.substring(1));
-			break;
-		case "."://className
-			return elementByClassName(document,vArg.substring(1));
-			break;
-		default:
-			var str = vArg.substring(0,5);
-			if (str == "name="){//name
-				return document.getElementsByName(vArg.substring(5));
-			}else{//tagName
-				return document.getElementsByTagName(vArg);
-			}
-			break;
-	}
-}
+// function $(vArg){
+// 	switch (vArg[0]){
+// 		case "#"://id
+// 			return document.getElementById(vArg.substring(1));
+// 			break;
+// 		case "."://className
+// 			return elementByClassName(document,vArg.substring(1));
+// 			break;
+// 		default:
+// 			var str = vArg.substring(0,5);
+// 			if (str == "name="){//name
+// 				return document.getElementsByName(vArg.substring(5));
+// 			}else{//tagName
+// 				return document.getElementsByTagName(vArg);
+// 			}
+// 			break;
+// 	}
+// }
 
 //针对className兼容问题优化
 function elementByClassName(parent,classStr){
@@ -129,24 +129,24 @@ function removeCookie(name){//删
 }
 
 //animation简单封装
-function animation(elem,properties){
-	clearInterval(elem.timerId);
-	elem.timerId = setInterval(function(){
-		for(property in properties){
-			var current;
-			var target = properties[property];
-			if(property == "opacity"){
-				current = Math.round((parseFloat(getStyle(elem,"opacity")))*100);
-			}else{
-				current = parseInt(getStyle(elem,property));
-			}
-			var speed = (target - current) / 30;
-			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
-			if(property == "opacity"){
-				elem.style.opacity = (current + speed) / 100;
-			}else{
-				elem.style[property] = current + speed + "px";
-			}
-		}
-	},20)
-}
+// function animation(elem,properties){
+// 	clearInterval(elem.timerId);
+// 	elem.timerId = setInterval(function(){
+// 		for(property in properties){
+// 			var current;
+// 			var target = properties[property];
+// 			if(property == "opacity"){
+// 				current = Math.round((parseFloat(getStyle(elem,"opacity")))*100);
+// 			}else{
+// 				current = parseInt(getStyle(elem,property));
+// 			}
+// 			var speed = (target - current) / 30;
+// 			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+// 			if(property == "opacity"){
+// 				elem.style.opacity = (current + speed) / 100;
+// 			}else{
+// 				elem.style[property] = current + speed + "px";
+// 			}
+// 		}
+// 	},20)
+// }
